@@ -1,0 +1,7 @@
+include:
+  - /assets/
+exclude:
+  - lite.html
+sass:
+  sass_dir: _sass
+  style: compact

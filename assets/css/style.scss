@@ -1,0 +1,25 @@
+---
+sass:
+  style: compressed
+---
+@import "materialize";
+
+#drop {
+  width: 100%;
+  height: calc(100% - 100px);
+  border: 10px dashed lightgray;
+  border-radius: 3em;
+  @extend .valign-wrapper;
+}
+
+.row {
+  margin-bottom: 0;
+  @extend .valign-wrapper;
+}
+
+#result {
+  margin-bottom: 0;
+  height: 66px;
+  font-size: 18px;
+  @extend .valign-wrapper;
+}

@@ -1,0 +1,25 @@
+<html>
+<head>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body ondrop="files(event)" ondragover="dragover(event)" ondragend="dragend(event)">
+  <div class="container">
+    <div class="row">
+      <div class="file-field input-field col s12">
+        <div class="btn">
+          <span>Choose an audio file</span>
+          <input type="file" oninput="files(event)">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+      <p id="result"/>
+    </div>
+    <div id="drop">
+      <h3 class="center-align grey-text text-darken-1" style="width:100%">Or just drop it here</h3>
+    </div>
+  </div>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
