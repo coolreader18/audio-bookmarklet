@@ -6,7 +6,7 @@ function files(e) {
       var item = dt.items[i];
       if (item.kind == "file") {
         doFile(item);
-      } else if item.type == "text/uri-list") {
+      } else if (item.type == "text/uri-list") {
         doURL(item);
       }
     }
