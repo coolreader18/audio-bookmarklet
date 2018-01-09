@@ -18,24 +18,25 @@ function files(e) {
   function doFile(file) {
     var fr = new FileReader();
     fr.onload = data => {
-      process(data.currentTarget.result);
+      process(data.currentTarget.result, file);
     };
     fr.readAsDataURL(file.getAsFile());
   }
   function doURL(url) {
-    url.getAsString(str => fetch(str).then(data => {
+    url.getAsString(str => fetch(str).then(async data => {
       var binary = '',
-      bytes = new Uint8Array(data.clone().arrayBuffer());
+      bytes = new Uint8Array(await data.clone().arrayBuffer()),
+      blob = await data.clone().blob();
       for (var i = 0; i < bytes.byteLength; i++) {
           binary += String.fromCharCode( bytes[ i ] );
       }
-      process(`data:${data.clone().blob.type};base64,${window.btoa(binary)}`);
+      process(`data:${blob.type};base64,${window.btoa(binary)}`, blob.name);
     }));
   }
-  function process(data) {
+  function process(data, name) {
     var res = document.querySelector("#result");
     res.href = `javascript:(function(w,i){w[i]=w[i]||{a:new Audio("${data}"),p:!1};var o=w[i];o.p?(o.a.pause(),o.a.currentTime=0,o.p=!1):(o.a.play(),o.p=!0)})(window,"${Math.random().toString(36).substr(2,7)}")`
-    res.innerHTML = file.name.split('.').slice(0, -1).join(".");
+    res.innerHTML = name.split('.').slice(0, -1).join(".");
   }
 }
 function dragover(e) {
