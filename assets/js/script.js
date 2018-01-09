@@ -28,9 +28,9 @@ function files(e) {
       bytes = new Uint8Array(await data.clone().arrayBuffer()),
       blob = await data.clone().blob();
       for (var i = 0; i < bytes.byteLength; i++) {
-          binary += String.fromCharCode(bytes[ i ]);
+          binary += String.fromCharCode(bytes[i]);
       }
-      process(`data:${blob.type};base64,${window.btoa(binary)}`, data.url.split("/")[-1]);
+      process(`data:${blob.type};base64,${window.btoa(binary)}`, data.url.split("/").slice(-1)[0]);
     }));
   }
   function process(data, name) {
