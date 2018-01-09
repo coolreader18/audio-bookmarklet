@@ -18,7 +18,7 @@ function files(e) {
   function doFile(file) {
     var fr = new FileReader();
     fr.onload = data => {
-      process(data.currentTarget.result, file);
+      process(data.currentTarget.result, file.name);
     };
     fr.readAsDataURL(file.getAsFile());
   }
@@ -28,7 +28,7 @@ function files(e) {
       bytes = new Uint8Array(await data.clone().arrayBuffer()),
       blob = await data.clone().blob();
       for (var i = 0; i < bytes.byteLength; i++) {
-          binary += String.fromCharCode( bytes[ i ] );
+          binary += String.fromCharCode(bytes[ i ]);
       }
       process(`data:${blob.type};base64,${window.btoa(binary)}`, blob.name);
     }));
