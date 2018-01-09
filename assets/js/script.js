@@ -30,7 +30,7 @@ function files(e) {
       for (var i = 0; i < bytes.byteLength; i++) {
           binary += String.fromCharCode(bytes[ i ]);
       }
-      process(`data:${blob.type};base64,${window.btoa(binary)}`, blob.name);
+      process(`data:${blob.type};base64,${window.btoa(binary)}`, data.url.split("/")[-1]);
     }));
   }
   function process(data, name) {
