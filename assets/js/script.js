@@ -5,7 +5,7 @@ function files(e) {
     for (var i=0; i < dt.items.length; i++) {
       var item = dt.items[i];
       if (item.kind == "file") {
-        doFile(item);
+        doFile(item.getAsFile());
       } else if (item.type == "text/uri-list") {
         doURL(item);
       }
@@ -20,7 +20,7 @@ function files(e) {
     fr.onload = data => {
       process(data.currentTarget.result, file.name);
     };
-    fr.readAsDataURL(file.getAsFile());
+    fr.readAsDataURL(file);
   }
   function doURL(url) {
     url.getAsString(str => fetch(str).then(async data => {
