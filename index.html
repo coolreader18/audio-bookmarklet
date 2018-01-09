@@ -1,25 +1,32 @@
 <html>
 <head>
+  <title>Audio Bookmarklet Maker</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="favicon.png" type="image/png">
 </head>
-<body ondrop="files(event)" ondragover="dragover(event)" ondragend="dragend(event)">
-  <div class="container">
-    <div class="row">
-      <div class="file-field input-field col s12">
-        <div class="btn">
-          <span>Choose an audio file</span>
-          <input type="file" oninput="files(event)">
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
+<body>
+  <div id='preloader'>
+    <div>
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
         </div>
       </div>
-      <p id="result"/>
-    </div>
-    <div id="drop">
-      <h3 class="center-align grey-text text-darken-1" style="width:100%">Or just drop it here</h3>
     </div>
   </div>
+  <input type="file" oninput="files(event)">
+    <div id="drop" ondrop="files(event)" ondragover="dragover(event)" ondragend="dragend(event)" onclick="document.querySelector('[type=file]').click(event)">
+      <h3 class="grey-text text-darken-1">Click to choose or drag and drop an audio file here
+        <br>
+        <a id="result" onclick="event.stopPropagation()"></a>
+      </h3>
+    </div>
   <script src="assets/js/script.js"></script>
 </body>
 </html>

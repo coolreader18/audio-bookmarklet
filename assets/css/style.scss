@@ -1,25 +1,48 @@
 ---
-sass:
-  style: compressed
 ---
 @import "materialize";
-
+$margin: 10;
+$mWH: calc(100% - calc(#{$margin}px * 2));
 #drop {
-  width: 100%;
-  height: calc(100% - 100px);
+  width: $mWH;
+  height: $mWH;
+  margin: $margin;
   border: 10px dashed lightgray;
   border-radius: 3em;
+  &:hover {
+    border-color: hsla(0, 0%, 90%, 1);
+  }
+  padding: 10px;
   @extend .valign-wrapper;
+  h3 {
+    width: 100%;
+    @extend .center-align;
+  }
 }
 
-.row {
-  margin-bottom: 0;
+#preloader {
   @extend .valign-wrapper;
+  @extend .center-align;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  > div {
+    width: 100%;
+    > .preloader-wrapper {
+      width: 128px;
+      height: 128px;
+      .circle {
+        border-width: 4px;
+      }
+    }
+  }
 }
 
-#result {
-  margin-bottom: 0;
-  height: 66px;
-  font-size: 18px;
-  @extend .valign-wrapper;
+input[type=file] {
+  display: none;
 }

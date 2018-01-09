@@ -15,14 +15,11 @@ function files(e) {
   function dothing(file) {
     var fr = new FileReader();
     fr.onload = data => {
-      var res = document.getElementById("result");
-      res.innerHTML = `<a href='javascript:new Audio("${data.currentTarget.result}").play()'>${file.name.split('.').slice(0, -1).join(".")}</a>`;
-      res.classList.add("col", "s6", "m4")
-      var fileClass = document.querySelector(".file-field").classList;
-      fileClass.remove("s12");
-      fileClass.add("s6", "m8")
+      var res = document.querySelector("#result");
+      res.href = `javascript:new Audio("${data.currentTarget.result}").play()`
+      res.innerHTML = file.name.split('.').slice(0, -1).join(".");
     };
-    fr.readAsDataURL(file)
+    fr.readAsDataURL(file);
   }
 }
 function dragover(e) {
