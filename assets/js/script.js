@@ -41,6 +41,11 @@ function files(e) {
         };
         fr.readAsArrayBuffer(blob);
       }
+      xhr.withCredentials = true;
+      xhr.onerror = function(){
+        alert(new Error("Couldn't connect"));
+        stopPreload();
+      };
       xhr.send();
     });
   }
