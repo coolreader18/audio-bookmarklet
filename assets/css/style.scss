@@ -1,6 +1,7 @@
 ---
 ---
 @import "materialize";
+@import "materialize-stolen";
 $margin: 10;
 $mWH: calc(100% - calc(#{$margin}px * 2));
 #drop {
@@ -16,13 +17,13 @@ $mWH: calc(100% - calc(#{$margin}px * 2));
   @extend .valign-wrapper;
   h3 {
     width: 100%;
-    @extend .center-align;
+    text-align: center;
   }
 }
 
 #preloader {
   @extend .valign-wrapper;
-  @extend .center-align;
+  text-align: center;
   display: none;
   position: fixed;
   width: 100%;
