@@ -1,0 +1,1 @@
+cmd: uglifyjs audio-bookmarklet.js -o audio-bookmarklet.min.js --mangle --comments all
