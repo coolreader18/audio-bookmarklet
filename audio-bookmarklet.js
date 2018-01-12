@@ -1,7 +1,7 @@
-// ==Bookmarklet==
-// @name Audio Bookmarklet Bookmarklet
-// @author coolreader18
-// ==/Bookmarklet==
+/* @bookmarklet @preserve
+ * @name Audio Bookmarklet Bookmarklet
+ * @author coolreader18
+ */
 
 fetch(location.href).then(async res => {
   var binary = '',
