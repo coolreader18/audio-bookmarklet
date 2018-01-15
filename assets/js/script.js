@@ -51,7 +51,7 @@ function files(e) {
   }
   function process(data, name) {
     var res = document.querySelector("#result");
-    res.href = `javascript:(function(w,i){w[i]=w[i]||(function(){let a=new Audio("${data}");a.onended=function(e){u(e.currentTarget)};return a})();var a=w[i];a.paused?a.play():u(a);function u(b){b.pause();b.currentTime=0}})(window.audiobookmarklet=window.audiobookmarklet||{},"${Math.random().toString(36).substr(2,7)}")`
+    res.href = `javascript:(function(w,i){w[i]=w[i]||Object.create(new Audio,{src:"${data}",onended:function(e){u(e.currentTarget)}});var a=w[i];a.paused?a.play():u(a);function u(b){b.pause();b.currentTime=0}})(window.audiobookmarklet=window.audiobookmarklet||{},"${Math.random().toString(36).substr(2,7)}")`
     res.innerHTML = name.split('.').slice(0, -1).join(".");
     stopPreload();
   }
