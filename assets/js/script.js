@@ -25,27 +25,29 @@ function files(e) {
   }
   function doURL(url) {
     url.getAsString(function(str) {
-      var xhr = new XMLHttpRequest();
-      xhr.responseType = "blob";
-      xhr.open("GET", str);
-      xhr.onload = function(e) {
-        var fr = new FileReader(),
-        blob = e.currentTarget.response;
-        fr.onload = function(ab) {
-          var binary = '',
-          bytes = new Uint8Array(ab.currentTarget.result);
-          for (var i = 0; i < bytes.byteLength; i++) {
-              binary += String.fromCharCode(bytes[i]);
-          }
-          process(`data:${blob.type};base64,${window.btoa(binary)}`, xhr.responseURL.split("/").slice(-1)[0]);
-        };
-        fr.readAsArrayBuffer(blob);
+      var xhr = Object.create(new XMLHttpRequest, {
+        responseType: "blob",
+        onload: function(e) {
+          var fr = Object.create(new FileReader,
+            onload: function(ab) {
+              var binary = '',
+              bytes = new Uint8Array(ab.currentTarget.result);
+              for (var i = 0; i < bytes.byteLength; i++) {
+                binary += String.fromCharCode(bytes[i]);
+              }
+              process(`data:${blob.type};base64,${window.btoa(binary)}`, xhr.responseURL.split("/").slice(-1)[0]);
+            }
+          }),
+          blob = e.currentTarget.response;
+          fr.readAsArrayBuffer(blob);
+        },
+        onerror: function(){
+          alert(new Error("Couldn't connect"));
+          stopPreload();
+        },
+        withCredentials: true
       }
-      xhr.withCredentials = true;
-      xhr.onerror = function(){
-        alert(new Error("Couldn't connect"));
-        stopPreload();
-      };
+      xhr.open("GET", str);
       xhr.send();
     });
   }
