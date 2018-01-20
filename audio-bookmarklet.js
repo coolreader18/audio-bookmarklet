@@ -10,6 +10,9 @@ fetch(location.href).then(async res => {
     binary += String.fromCharCode(bytes[i]);
   }
   var win = open("", "audioBookmarklet", "status=no,height=100,innerWidth=300");
+  if (!win) {
+    win = open("", "audioBookmarklet");
+  }
   win.document.write(
 `<style>
 @import url('https://fonts.googleapis.com/css?family=Roboto');
