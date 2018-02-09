@@ -22,12 +22,12 @@
     </div>
   </div>
   <input type="file" oninput="files(event)">
-    <div id="drop" ondrop="files(event)" ondragover="dragover(event)" ondragend="dragend(event)" onclick="document.querySelector('[type=file]').click(event)">
-      <h3 class="grey-text text-darken-1">Click to choose or drag and drop an audio file here
-        <br>
-        <a id="result" onclick="event.stopPropagation()"></a>
-      </h3>
-    </div>
+  <div id="drop" ondrop="files(event)" ondragover="dragover(event)" ondragend="dragend(event)" onclick="document.querySelector('[type=file]').click(event)">
+    <h3 class="grey-text text-darken-1">Click to choose or drag and drop an audio file here
+      <br>
+      <a id="result" onclick="event.stopPropagation()"></a>
+    </h3>
+  </div>
   <script src="assets/js/script.js"></script>
 </body>
 </html>
