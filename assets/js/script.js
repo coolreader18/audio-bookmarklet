@@ -29,18 +29,18 @@ function files(e) {
         responseType: "blob",
         onload: function(e) {
           var fr = Object.create(new FileReader(), {
-              onload: function(ab) {
-                var binary = "",
-                  bytes = new Uint8Array(ab.currentTarget.result);
-                for (var i = 0; i < bytes.byteLength; i++) {
-                  binary += String.fromCharCode(bytes[i]);
-                }
-                process(
-                  `data:${blob.type};base64,${window.btoa(binary)}`,
-                  xhr.responseURL.split("/").slice(-1)[0]
-                );
+            onload: function(ab) {
+              var binary = "",
+                bytes = new Uint8Array(ab.currentTarget.result);
+              for (var i = 0; i < bytes.byteLength; i++) {
+                binary += String.fromCharCode(bytes[i]);
               }
-            }),
+              process(
+                `data:${blob.type};base64,${window.btoa(binary)}`,
+                xhr.responseURL.split("/").slice(-1)[0]
+              );
+            }
+          }),
             blob = e.currentTarget.response;
           fr.readAsArrayBuffer(blob);
         },
@@ -56,10 +56,18 @@ function files(e) {
   }
   function process(data, name) {
     var res = document.querySelector("#result");
-    res.href = `javascript:(function(w,i){w[i]=w[i]||Object.create(new Audio,{src:"${data}",onended:function(e){u(e.currentTarget)}});var a=w[i];a.paused?a.play():u(a);function u(b){b.pause();b.currentTime=0}})(window.audiobookmarklet=window.audiobookmarklet||{},"${Math.random()
-      .toString(36)
-      .substr(2, 7)}")`;
-    res.innerHTML = name
+    res.href = `javascript:\
+(function(w,i){w[i]=w[i]||Object.assign(new Audio,{\
+src:${JSON.stringify(data)},\
+onended:function(e){u(e.currentTarget)}\
+});var a=w[i];a.paused?a.play():u(a);\
+function u(b){b.pause();b.currentTime=0}})(\
+window.audiobookmarklet=window.audiobookmarklet||{},${JSON.stringify(
+        Math.random()
+          .toString(36)
+          .substr(2, 7)
+      )})`;
+    res.textContent = name
       .split(".")
       .slice(0, -1)
       .join(".");
